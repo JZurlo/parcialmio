@@ -36,3 +36,12 @@ wingardiumLeviosa postreA = Postre(agregarSaborConcentrado postreA) (0.90*peso p
 
 agregarSaborConcentrado :: Postre -> [Sabor]
 agregarSaborConcentrado postreA = sabores postreA ++ [concentrado]
+
+diffindo :: Number -> Postre -> Postre
+diffindo porcentaje postreA = postreA{peso = (1-porcentaje/100) * peso postreA}
+
+riddikulus :: Sabor -> Postre -> Postre
+riddikulus unSabor postreA =  postreA{ sabores = reverse(agregarUnSabor unSabor postreA)}
+
+agregarUnSabor:: Sabor -> Postre -> Postre
+agregarUnSabor unSabor postreA = postreA { sabores = unSabor : sabores postreA}

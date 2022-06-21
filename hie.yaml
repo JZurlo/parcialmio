@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "parcialmio:lib"
+
+    - path: "./test"
+      component: "parcialmio:test:parcialmio-test"

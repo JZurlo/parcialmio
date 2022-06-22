@@ -74,9 +74,13 @@ pesoPromedio mesasa1
 
 
 --E)
-crearmesasasInfinitas:: [Postre] -> [Postre]
-crearmesasasInfinitas (x:xs) = [x] ++ (crearmesasasInfinitas [x] ++ xs)
+crearMesasaInfinita:: Mesasa-> Mesasa
+crearMesasaInfinita (x:xs) = [x] ++ (crearMesasaInfinita [x] ++ xs)
 
+mesaDulce = crearMesasaInfinita [chocotorta]
 -- ¿Existe alguna consulta que pueda hacer para que me sepa dar una respuesta? 
---Spec Library Spec> postreQuedaListo mesaDulce mesasa1
-mesaDulce = Postre (crearmesasasInfinitas mesasa1)
+--Spec Library Spec> mesaLista mesaDulce avadaKedavra
+--False
+--Por mas que la mesaDulce sea una mesa infinita de postres chocotorta (la cual contiene sabores),
+--al aplicar el hechizo avadaKedavra vaciaré los sabores y debido a que Haskell aplica evaluacion diferida,
+--no se queda realizando el loop infinito, dado que ya sabe que los nuevos Postres no tendran sabores

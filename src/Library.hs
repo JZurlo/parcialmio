@@ -54,7 +54,7 @@ mesasa1 :: Mesasa
 mesasa1 = [chocotorta,budin,lemonPie]
 
 postreQuedaListo :: Postre -> Bool
-postreQuedaListo postreA = (peso postreA > 0) && (temperatura postreA > 0)
+postreQuedaListo postreA = (peso postreA > 0) && (length (sabores postreA)> 0) && (temperatura postreA > 0)
 
 mesaLista :: Mesasa -> Hechizo -> Bool
 mesaLista mesaA hechizoA = all postreQuedaListo (map hechizoA mesaA)

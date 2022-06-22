@@ -1,7 +1,3 @@
-# ejercicio-alumno
+# Paradigmas de Programación - Recuperatorio Haskell - Zurlo Julian - 2022
 
-## Integrantes
-
-- integrante1 (usuario github)
-- integrante2 (usuario github)
-...
+# [Enunciado](https://docs.google.com/document/d/18mLui0BSzFCyZU1ieUbxmzPmInTctVznL0hb6exRHZw/edit#)

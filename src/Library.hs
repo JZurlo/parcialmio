@@ -47,23 +47,36 @@ chocotorta = Postre ["Chocolinas","Casancrem","DulceDeLeche"] 300 20
 budin = Postre ["Harina","Vainilla","Limon"] 50 30 
 lemonPie = Postre ["Limon","Crema"] 200 10 
 
-postres = [chocotorta,budin,lemonPie]
+type Mesasa = [Postre]
+type Hechizo = Postre -> Postre
 
---postreQuedaListo :: Hechizo -> Postre -> Bool
---postreQuedaListo unHechizo
+mesasa1 :: Mesasa
+mesasa1 = [chocotorta,budin,lemonPie]
 
+postreQuedaListo :: Postre -> Bool
+postreQuedaListo postreA = (peso postreA > 0) && (temperatura postreA > 0)
+
+mesaLista :: Mesasa -> Hechizo -> Bool
+mesaLista mesaA hechizoA = all postreQuedaListo (map hechizoA mesaA)
 
 --D)
-pesoPromedio :: [Postre] -> Number
-pesoPromedio postres
-    |postres == [] = 0
-    |otherwise = foldl ($ peso (+)) 0(postres) / (length postres)
+soloListos :: Mesasa -> Mesasa
+soloListos mesasaA = filter postreQuedaListo mesasaA -- Filtro solo los listos
+
+pesoPromedio :: Mesasa -> Number
+pesoPromedio mesasa1
+    |mesasa1 == [] = 0 --Si no hay postres devuelvo 0
+    |otherwise = (sum (map peso (soloListos mesasa1))) / (length (soloListos mesasa1))
+--Filtro los listos
+--Obtengo el peso de cada uno y dejo una lista de pesos (Numeric)
+--Sumo la lista de pesos
+--Divido por el Length de los postres listos
 
 
 --E)
-crearPostresInfinitos:: [Postre] -> [Postre]
-crearPostresInfinitos (x:xs) = [x] ++ (crearPostresInfinitos [x] ++ xs)
+crearmesasasInfinitas:: [Postre] -> [Postre]
+crearmesasasInfinitas (x:xs) = [x] ++ (crearmesasasInfinitas [x] ++ xs)
 
 -- ¿Existe alguna consulta que pueda hacer para que me sepa dar una respuesta? 
---Spec Library Spec> postreQuedaListo mesaDulce postres
-mesaDulce = Postre (crearPostresInfinitos postres)
+--Spec Library Spec> postreQuedaListo mesaDulce mesasa1
+mesaDulce = Postre (crearmesasasInfinitas mesasa1)
